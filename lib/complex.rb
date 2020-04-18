@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Monkey patch for complex methods
 class Complex
   def self.polar_grads(radius, angle)
@@ -5,7 +7,7 @@ class Complex
   end
 
   def radius
-    self.polar.first
+    polar.first
   end
 
   def angle_grads

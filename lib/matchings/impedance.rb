@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # ImpedanceMatching: Maximum gain impedance matching calculator
 module Matchings
   class Impedance
@@ -12,7 +14,7 @@ module Matchings
     end
 
     def ds
-      @ds ||= s11*s22 - s12*s21
+      @ds ||= s11 * s22 - s12 * s21
     end
 
     def k
@@ -20,19 +22,19 @@ module Matchings
     end
 
     def b1
-      @b1 ||= 1+ s11.abs**2 - s22.abs**2 - ds.abs**2
+      @b1 ||= 1 + s11.abs**2 - s22.abs**2 - ds.abs**2
     end
 
     def mag
       if b1 < 0
-        Math.log10(s21.abs/s12.abs) + Math.log10((k + Math.sqrt((k**2)-1).abs))
+        Math.log10(s21.abs / s12.abs) + Math.log10((k + Math.sqrt((k**2) - 1).abs))
       else
-        Math.log10(s21.abs/s12.abs) + Math.log10((k - Math.sqrt((k**2)-1).abs))
+        Math.log10(s21.abs / s12.abs) + Math.log10((k - Math.sqrt((k**2) - 1).abs))
       end * 10
     end
 
     def c2
-      @c2 ||= s22 - ds*s11.conjugate
+      @c2 ||= s22 - ds * s11.conjugate
     end
 
     def b2
@@ -41,22 +43,22 @@ module Matchings
 
     def gama_l_magnitude
       @gama_l_magnitude ||= if b2.positive?
-        (b2 - Math.sqrt(b2**2 - 4*(c2.abs**2))) / (2 * c2.abs)
-      else
-        (b2 + Math.sqrt(b2**2 - 4*(c2.abs**2))) / (2 * c2.abs)
+                              (b2 - Math.sqrt(b2**2 - 4 * (c2.abs**2))) / (2 * c2.abs)
+                            else
+                              (b2 + Math.sqrt(b2**2 - 4 * (c2.abs**2))) / (2 * c2.abs)
       end
     end
 
     def gama_l
-      @gama_l ||= Complex.polar_grads(gama_l_magnitude, -1*(c2.angle_grads))
+      @gama_l ||= Complex.polar_grads(gama_l_magnitude, -1 * c2.angle_grads)
     end
 
     def gama_s
-      @gama_s ||= (s11 + ( (s12*s21*gama_l) / (1 - (gama_l*s22)) ) ).conjugate
+      @gama_s ||= (s11 + ((s12 * s21 * gama_l) / (1 - (gama_l * s22)))).conjugate
     end
 
     def results
-      """
+      ''"
         s11 = #{s11}
         s12 = #{s12}
         s21 = #{s21}
@@ -71,7 +73,7 @@ module Matchings
        |ΓL| = #{gama_l_magnitude.round(5)}
          ΓL = #{gama_l}
          Γs = #{gama_s}
-      """
+      "''
     end
   end
 end

@@ -1,17 +1,121 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Impedance Matchings</title>
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.css">
-  </head>
-  <body>
-    <div class="container">
-      <h1>Impedance Matchings</h1>
-      <hr>
-      <%= @exercise.results %>
+<h1 class="title"><i class="fas fa-pencil-alt"></i> Impedance matching</h1>
+<div class="columns">
+  <div class="column is-three-quarters">
+    <div class="content">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </div>
-  </body>
-</html>
+    <form class="" action="/calculate" method="post">
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">S<sub>11</sub></label>
+            <div class="control">
+              <input class="input" type="text" placeholder="S11 value" name="s11" id="s11" value="<%= @s11 %>">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">S<sub>12</sub></label>
+            <div class="control">
+              <input class="input" type="text" placeholder="S12 value" name="s12" id="s12" value="<%= @s12 %>">
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label">S<sub>21</sub></label>
+            <div class="control">
+              <input class="input" type="text" placeholder="S21 value" name="s21" id="s21" value="<%= @s21 %>">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">S<sub>22</sub></label>
+            <div class="control">
+              <input class="input" type="text" placeholder="S22 value" name="s22" id="s22" value="<%= @s22 %>" >
+            </div>
+          </div>
+          <div class="field is-pulled-right">
+            <div class="control">
+              <button class="button is-link">Calculate</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr/>
+    </form>
+    <div class="columns">
+      <div class="column is-half">
+        <div class="field">
+          <label class="label">D<sub>s</sub></label>
+          <div class="control">
+            <input class="input" type="text" readonly value="<%= @matching.ds %>">
+          </div>
+          <p class="help">Help available</p>
+        </div>
+
+        <div class="field">
+          <label class="label">K</label>
+          <div class="control">
+            <input class="input" type="text" readonly value="<%= @matching.k.round(5) %>">
+          </div>
+          <p class="help">Help available</p>
+        </div>
+
+        <div class="field">
+          <label class="label">B<sub>1</sub></label>
+          <div class="control">
+            <input class="input" type="text" readonly value="<%= @matching.b1.round(5) %>">
+          </div>
+          <p class="help">Help available</p>
+        </div>
+
+        <div class="field">
+          <label class="label">MAG</label>
+          <div class="control">
+            <input class="input" type="text" readonly value="<%= @matching.mag.round(5) %>">
+          </div>
+          <p class="help">Help available</p>
+        </div>
+
+        <div class="field">
+          <label class="label">C<sub>2</sub></label>
+          <div class="control">
+            <input class="input" type="text" readonly value="<%= @matching.c2 %>">
+          </div>
+          <p class="help">Help available</p>
+        </div>
+
+        <div class="field">
+          <label class="label">B<sub>2</sub></label>
+          <div class="control">
+            <input class="input" type="text" readonly value="<%= @matching.gama_l_magnitude.round(5) %>">
+          </div>
+          <p class="help">Help available</p>
+        </div>
+
+        <div class="field">
+          <label class="label">|Γ<sub>L</sub>|</label>
+          <div class="control">
+            <input class="input" type="text" readonly value="<%= @matching.gama_l %>">
+          </div>
+          <p class="help">Help available</p>
+        </div>
+
+        <div class="field">
+          <label class="label">Γ<sub>L</sub></label>
+          <div class="control">
+            <input class="input" type="text" readonly value="<%= @matching.gama_s %>">
+          </div>
+          <p class="help">Help available</p>
+        </div>
+
+        <div class="field">
+          <label class="label">Γ<sub>s</sub></label>
+          <div class="control">
+            <input class="input" type="text" readonly value="<%= @matching.ds %>">
+          </div>
+          <p class="help">Help available</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
